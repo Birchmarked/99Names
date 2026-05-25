@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>99 Names of Allah - Al-Asma ul-Husna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --surface2: #f4f1eb;
+    --border: #e5dfd3;
+    --border2: #cfc8ba;
+    --text: #1a1611;
+    --text2: #6b6355;
+    --text3: #9c9080;
+    --gold: #b8860b;
+    --gold-light: #f9f0d8;
+    --gold-mid: #e8c96a;
+    --green: #2d6a4f;
+    --green-light: #e8f5ee;
+    --blue: #1a4a7a;
+    --blue-light: #e8f0fa;
+    --rose: #7a2d3a;
+    --rose-light: #faeaed;
+    --amber: #7a4a1a;
+    --amber-light: #fdf0e0;
+    --purple: #4a2d7a;
+    --purple-light: #f0eafa;
+    --teal: #1a5a5a;
+    --teal-light: #e8f5f5;
+    --gray: #5a5550;
+    --gray-light: #f4f1eb;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(160deg, #1a1611 0%, #2c2418 50%, #1a1611 100%);
+    padding: 3.5rem 1.5rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(184,134,11,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-bismillah {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    color: var(--gold-mid);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    direction: rtl;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.6rem, 5vw, 2.8rem);
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--gold-mid); }
+  .hero-sub {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-hadith {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.45);
+    font-style: italic;
+    line-height: 1.7;
+    border-top: 0.5px solid rgba(184,134,11,0.3);
+    padding-top: 1.2rem;
+  }
+  .hero-hadith strong { color: var(--gold-mid); font-style: normal; font-weight: 400; }
+
+  /* Controls */
+  .controls-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .controls {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    stroke: var(--text3);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    padding: 9px 14px 9px 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  #search:focus { border-color: var(--gold); background: #fff; }
+  #search::placeholder { color: var(--text3); }
+
+  select {
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    background: var(--surface2);
+    color: var(--text);
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  select:focus { border-color: var(--gold); }
+
+  .count-badge {
+    font-size: 12px;
+    color: var(--text3);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* Table */
+  .table-outer {
+    max-width: 960px;
+    margin: 1.5rem auto;
+    padding: 0 1rem 3rem;
+  }
+  .table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  thead th {
+    background: var(--surface2);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 11px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th:nth-child(1) { width: 44px; text-align: center; }
+  th:nth-child(2) { width: 110px; }
+  th:nth-child(3) { width: 130px; }
+  th:nth-child(4) { width: 150px; }
+  th:nth-child(5) { }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
+  }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--gold-light); }
+
+  td {
+    padding: 12px 14px;
+    vertical-align: top;
+    color: var(--text);
+  }
+  td:nth-child(1) {
+    text-align: center;
+    color: var(--text3);
+    font-size: 12px;
+    font-weight: 500;
+    padding-top: 14px;
+  }
+  .arabic {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    direction: rtl;
+    text-align: right;
+    color: var(--gold);
+    line-height: 1.6;
+    margin-bottom: 2px;
+  }
+  .transliteration {
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .meaning {
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .when-wrap { }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px; }
+  .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag-dua       { background: var(--teal-light);   color: var(--teal); }
+  .tag-hardship  { background: var(--amber-light);  color: var(--amber); }
+  .tag-forgiveness { background: var(--gold-light); color: var(--gold); }
+  .tag-gratitude { background: var(--green-light);  color: var(--green); }
+  .tag-guidance  { background: var(--blue-light);   color: var(--blue); }
+  .tag-protection{ background: var(--purple-light); color: var(--purple); }
+  .tag-provision { background: var(--green-light);  color: var(--green); }
+  .tag-grief     { background: var(--rose-light);   color: var(--rose); }
+  .tag-justice   { background: var(--blue-light);   color: var(--blue); }
+  .tag-reflection{ background: var(--gray-light);   color: var(--gray); }
+
+  .when-text {
+    font-size: 12.5px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text3);
+    font-size: 14px;
+    display: none;
+  }
+
+  /* Legend */
+  .legend {
+    max-width: 960px;
+    margin: 0 auto 1rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .legend-label { font-size: 11px; color: var(--text3); margin-right: 4px; }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 12px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    th:nth-child(3), td:nth-child(3) { display: none; }
+    th:nth-child(4) { width: 120px; }
+    .hero { padding: 2.5rem 1rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+  <h1>The <span>99 Names</span> of Allah</h1>
+  <p class="hero-sub">Al-Asma ul-Husna - The Most Beautiful Names</p>
+  <p class="hero-hadith">
+    <strong>"Allah has ninety-nine names. Whoever learns them will enter Paradise."</strong><br>
+    - Sahih al-Bukhari
+  </p>
+</div>
+
+<div class="controls-wrap">
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Search names, meanings or situations…" oninput="filter()">
+    </div>
+    <select id="catFilter" onchange="filter()">
+      <option value="">All categories</option>
+      <option value="dua">In du'a / supplication</option>
+      <option value="hardship">During hardship</option>
+      <option value="forgiveness">Seeking forgiveness</option>
+      <option value="gratitude">Expressing gratitude</option>
+      <option value="guidance">Seeking guidance</option>
+      <option value="protection">Seeking protection</option>
+      <option value="provision">Seeking provision</option>
+      <option value="grief">In grief or loss</option>
+      <option value="justice">Seeking justice</option>
+      <option value="reflection">Reflection / dhikr</option>
+    </select>
+    <span class="count-badge" id="count">99 names</span>
+  </div>
+</div>
+
+<div class="table-outer">
+  <div class="legend">
+    <span class="legend-label">Tags:</span>
+    <span class="tag tag-dua">Du'a</span>
+    <span class="tag tag-hardship">Hardship</span>
+    <span class="tag tag-forgiveness">Forgiveness</span>
+    <span class="tag tag-gratitude">Gratitude</span>
+    <span class="tag tag-guidance">Guidance</span>
+    <span class="tag tag-protection">Protection</span>
+    <span class="tag tag-provision">Provision</span>
+    <span class="tag tag-grief">Grief</span>
+    <span class="tag tag-justice">Justice</span>
+    <span class="tag tag-reflection">Reflection</span>
+  </div>
+
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Arabic</th>
+          <th>Transliteration</th>
+          <th>Meaning</th>
+          <th>Best invoked when…</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="no-results" id="noResults">No names match your search.</div>
+  </div>
+</div>
+
+<footer>
+  Al-Asma ul-Husna - The 99 Beautiful Names of Allah &nbsp;·&nbsp; May Allah grant us the ability to know and call upon Him by His most beautiful names.
+</footer>
+
+<script>
+const NAMES = [
+  [1,"الرَّحْمَنُ","AR-RAHMAAN","The Beneficent","forgiveness,dua,hardship","Starting any du'a or supplication; at the beginning of prayers; when you need Allah's universal mercy regardless of your state"],
+  [2,"الرَّحِيمُ","AR-RAHEEM","The Merciful","forgiveness,dua","When seeking personal mercy and compassion; after sinning; when you feel undeserving of forgiveness"],
+  [3,"الْمَلِكُ","AL-MALIK","The King","reflection,dua","During reflection on the majesty of Allah; when feeling powerless before worldly rulers; reminding yourself who holds true sovereignty"],
+  [4,"الْقُدُّوسُ","AL-QUDDUS","The Most Sacred","reflection,dua","During tasbeeh (glorification); to purify your heart and intentions; when you feel spiritually polluted"],
+  [5,"السَّلاَمُ","AS-SALAM","The Source of Peace","hardship,grief","When your heart is anxious or restless; seeking inner peace after conflict or loss; before sleep"],
+  [6,"الْمُؤْمِنُ","AL-MU'MIN","The Infuser of Faith","guidance,hardship","When your faith is wavering; asking for certainty and trust in Allah; after doubt creeps in"],
+  [7,"الْمُهَيْمِنُ","AL-MUHAYMIN","The Preserver of Safety","protection","When seeking protection over your family, home, or travels; asking Allah to watch over someone in danger"],
+  [8,"الْعَزِيزُ","AL-AZIZ","The All Mighty","hardship,reflection","When feeling humiliated or powerless; reminding yourself that victory belongs to Allah; before facing a strong adversary"],
+  [9,"الْجَبَّارُ","AL-JABBAR","The Compeller, The Restorer","hardship,grief","When something in your life feels broken beyond repair - a relationship, health, hope; asking Allah to restore what is shattered"],
+  [10,"الْمُتَكَبِّرُ","AL-MUTAKABBIR","The Supreme, The Majestic","reflection","During moments of pride or arrogance - to remember true greatness belongs only to Allah; cultivating humility"],
+  [11,"الْخَالِقُ","AL-KHAALIQ","The Creator","reflection,dua","When marvelling at creation; when starting a new project or life chapter; asking Allah to create ease in a new situation"],
+  [12,"الْبَارِئُ","AL-BAARI","The Evolver","reflection,dua","When asking for personal growth and transformation; reflecting on how Allah shapes each soul distinctly"],
+  [13,"الْمُصَوِّرُ","AL-MUSAWWIR","The Fashioner","dua,provision","When making du'a for a child; during pregnancy; when asking for the best possible outcome to be formed"],
+  [14,"الْغَفَّارُ","AL-GHAFFAR","The Constant Forgiver","forgiveness","When you repeat the same sin and fear you have exhausted Allah's forgiveness; seeking repeated pardon with true remorse"],
+  [15,"الْقَهَّارُ","AL-QAHHAR","The All-Prevailing One","hardship,justice","When oppressed by a tyrant or unjust situation; trusting that Allah will ultimately prevail over all wrongdoers"],
+  [16,"الْوَهَّابُ","AL-WAHHAAB","The Supreme Bestower","provision,dua","When asking for a gift you cannot earn - a child, a healing, a blessing; calling on Allah's pure generosity"],
+  [17,"الرَّزَّاقُ","AR-RAZZAAQ","The Provider","provision,hardship","When facing financial difficulty, unemployment, or scarcity; trusting that sustenance comes only from Allah"],
+  [18,"الْفَتَّاحُ","AL-FATTAAH","The Supreme Solver","hardship,guidance","When all doors seem closed - in career, marriage, or a problem with no solution; asking Allah to open what only He can"],
+  [19,"الْعَلِيمُ","AL-ALEEM","The All-Knowing","guidance,dua","When making an important decision; in istikharah prayer; when only Allah knows what is truly best for you"],
+  [20,"الْقَابِضُ","AL-QAABID","The Withholder","reflection","During times of scarcity or loss; trusting that Allah withholds only in wisdom and not out of indifference"],
+  [21,"الْبَاسِطُ","AL-BAASIT","The Extender","provision,dua","When asking for expansion in provision, knowledge, or opportunity; hoping for Allah to open blessings wide"],
+  [22,"الْخَافِضُ","AL-KHAAFIDH","The Reducer","justice,reflection","When asking for the humbling of arrogant oppressors; reflecting that Allah lowers whoever He wills"],
+  [23,"الرَّافِعُ","AR-RAAFI","The Exalter","dua,hardship","When seeking elevation in status, honour, or spirit after humiliation; asking Allah to raise your rank"],
+  [24,"الْمُعِزُّ","AL-MU'IZZ","The Honourer","hardship,dua","When dishonoured, shamed, or overlooked; asking Allah to restore your dignity and honour"],
+  [25,"الْمُذِلُّ","AL-MUZIL","The Dishonourer","justice","When asking Allah to remove the power of a tyrant or oppressor; surrendering the desire for revenge to Allah"],
+  [26,"السَّمِيعُ","AS-SAMEE","The All-Hearing","dua,hardship","When making du'a and fearing you are not heard; pouring out your heart knowing He hears every whisper"],
+  [27,"الْبَصِيرُ","AL-BASEER","The All-Seeing","reflection,protection","When you feel unseen in your suffering or good deeds; taking comfort that Allah witnesses everything"],
+  [28,"الْحَكَمُ","AL-HAKAM","The Impartial Judge","justice","When seeking resolution in a dispute; when human courts fail; trusting ultimate justice rests with Allah"],
+  [29,"الْعَدْلُ","AL-ADL","The Utterly Just","justice,hardship","When you witness or experience injustice; taking strength that Allah's justice is absolute and permanent"],
+  [30,"اللَّطِيفُ","AL-LATEEF","The Subtle One","hardship,dua","When relief comes from unexpected places; asking Allah for subtle, gentle blessings you cannot plan or predict"],
+  [31,"الْخَبِيرُ","AL-KHABEER","The All-Aware","guidance,reflection","When making a hidden sacrifice no one else sees; knowing Allah is fully aware of your inner state and struggles"],
+  [32,"الْحَلِيمُ","AL-HALEEM","The Most Forbearing","forgiveness,reflection","When you have wronged someone and fear Allah's punishment; trusting in His patience; also when practising patience yourself"],
+  [33,"الْعَظِيمُ","AL-AZEEM","The Magnificent","reflection,dua","During dhikr and glorification; to feel the immensity of Allah when burdened by the world's smallness"],
+  [34,"الْغَفُورُ","AL-GHAFOOR","The Great Forgiver","forgiveness","When overcome by guilt or shame for past sins; seeking complete forgiveness that erases and covers all wrongdoing"],
+  [35,"الشَّكُورُ","ASH-SHAKOOR","The Most Appreciative","gratitude","When your good deeds feel unrecognised by people; knowing Allah multiplies and fully appreciates even the smallest effort"],
+  [36,"الْعَلِيُّ","AL-ALEE","The Most High","reflection,dua","To humble yourself before Allah's exaltedness; when pride creeps in; elevating your spiritual aspirations"],
+  [37,"الْكَبِيرُ","AL-KABEER","The Most Great","reflection","When worldly concerns overwhelm you; remembering that nothing in creation compares to the greatness of Allah"],
+  [38,"الْحَفِيظُ","AL-HAFEETH","The Preserver","protection,dua","When asking Allah to protect your deeds, family, health, or memory; seeking preservation from loss and corruption"],
+  [39,"الْمُقِيتُ","AL-MUQEET","The Sustainer","provision,dua","When asking for nourishment - physical, spiritual, or emotional; seeking strength to carry responsibilities"],
+  [40,"الْحَسِيبُ","AL-HASEEB","The Reckoner","reflection,justice","To keep yourself accountable; remembering that a full reckoning of every deed awaits; encouraging self-audit"],
+  [41,"الْجَلِيلُ","AL-JALEEL","The Majestic","reflection,dua","During glorification and dhikr; when overwhelmed by the magnificence of Allah; cultivating reverence and awe"],
+  [42,"الْكَرِيمُ","AL-KAREEM","The Most Generous","dua,provision","When asking for a generous gift or blessing beyond your means; trusting in Allah's boundless generosity"],
+  [43,"الرَّقِيبُ","AR-RAQEEB","The Watchful","reflection,protection","When you are tempted to sin in private; reminding yourself Allah watches always; seeking His protection"],
+  [44,"الْمُجِيبُ","AL-MUJEEB","The Responsive One","dua","When your du'a seems unanswered; holding firm that Allah responds to every sincere call without exception"],
+  [45,"الْوَاسِعُ","AL-WAASI","The All-Encompassing","hardship,forgiveness","When your sins feel too many or your problems too vast; knowing Allah's mercy encompasses everything"],
+  [46,"الْحَكِيمُ","AL-HAKEEM","The All-Wise","guidance,hardship","When you cannot understand why something painful is happening; trusting Allah's wisdom behind every decree"],
+  [47,"الْوَدُودُ","AL-WADUD","The Most Loving","grief,dua","When you feel unloved, lonely, or broken-hearted; remembering that Allah's love is unconditional and eternal"],
+  [48,"الْمَجِيدُ","AL-MAJEED","The Glorious","reflection,dua","During salah and praise; invoking Allah's glory and nobility; seeking intercession through His glorious nature"],
+  [49,"الْبَاعِثُ","AL-BA'ITH","The Infuser of New Life","hardship,reflection","When feeling spiritually dead or numb; asking for a renewal of faith, purpose, and motivation"],
+  [50,"الشَّهِيدُ","ASH-SHAHEED","The All-Observing Witness","justice,reflection","When no one witnesses your suffering or sacrifice; taking comfort Allah is the ultimate witness to all things"],
+  [51,"الْحَقُّ","AL-HAQQ","The Absolute Truth","guidance,reflection","When surrounded by confusion or misinformation; anchoring yourself in Allah as the only absolute truth"],
+  [52,"الْوَكِيلُ","AL-WAKEEL","The Trustee","hardship,dua","When placing a matter entirely in Allah's hands; after doing your best and letting go with full tawakkul (reliance)"],
+  [53,"الْقَوِيُّ","AL-QAWIYY","The All-Strong","hardship,protection","When feeling weak against an enemy, illness, or challenge; drawing strength from Allah who is above all forces"],
+  [54,"الْمَتِينُ","AL-MATEEN","The Firm, The Steadfast","hardship,reflection","When seeking firmness in faith or resolve; asking Allah to make you steadfast; reflecting on His unchanging nature"],
+  [55,"الْوَلِيُّ","AL-WALIYY","The Protecting Associate","protection,dua","When you need a guardian and ally; asking Allah to be your intimate protector and guide in a hostile world"],
+  [56,"الْحَمِيدُ","AL-HAMEED","The Praiseworthy","gratitude,reflection","In hamd (praise) and gratitude; after a blessing is received; recognising all praise ultimately returns to Allah"],
+  [57,"الْمُحْصِي","AL-MUHSEE","The All-Enumerating Counter","reflection","When you fear your good deeds are too few; knowing Allah counts every single act of goodness with precision"],
+  [58,"الْمُبْدِئُ","AL-MUBDI","The Originator","reflection,dua","When beginning something new; asking Allah to bless its inception and originate all good within it"],
+  [59,"الْمُعِيدُ","AL-MUEED","The Restorer","grief,hardship","When something has ended and you grieve it; trusting that Allah can restore and renew what has been lost"],
+  [60,"الْمُحْيِي","AL-MUHYI","The Giver of Life","hardship,reflection","When spiritually or emotionally lifeless; asking Allah to revive what has died in you; gratitude for life itself"],
+  [61,"الْمُمِيتُ","AL-MUMEET","The Creator of Death","reflection","During reflection on mortality; when preparing for the afterlife; to weaken attachment to the dunya (worldly life)"],
+  [62,"الْحَيُّ","AL-HAYY","The Ever-Living","hardship,dua","In times of deep crisis - illness, grief, despair; the Prophet ﷺ used this name in urgent supplication; pair with Al-Qayyoom"],
+  [63,"الْقَيُّومُ","AL-QAYYOOM","The Self-Subsisting Sustainer","hardship,dua","In times of complete helplessness; knowing Allah sustains all creation while needing nothing; a powerful name in crisis du'a"],
+  [64,"الْوَاجِدُ","AL-WAAJID","The Perceiver","reflection","When exploring Allah's attributes; reflecting that Allah finds and perceives everything without any lack"],
+  [65,"الْمَاجِدُ","AL-MAAJID","The Illustrious","reflection,dua","In glorification and tasbeeh; reflecting on Allah's immense nobility and honour that surpasses all else"],
+  [66,"الْوَاحِدُ","AL-WAAHID","The One","reflection,dua","When tempted toward shirk or worldly attachments; reaffirming tawheed - the oneness of Allah"],
+  [67,"الْأَحَدُ","AL-AHAD","The Unique","reflection,dua","Deeply reaffirming Allah's absolute and unique oneness; the name of Surah Al-Ikhlas; for purifying the heart"],
+  [68,"الصَّمَدُ","AS-SAMAD","The Eternal Satisfier of Needs","dua,hardship","When turning to Allah as the only one who can truly fulfil a need; not depending on any created thing"],
+  [69,"الْقَادِرُ","AL-QADEER","The Omnipotent","hardship,dua","When the task seems impossible by human standards; affirming that Allah has power over all things without limit"],
+  [70,"الْمُقْتَدِرُ","AL-MUQTADIR","The Powerful","reflection,dua","When seeking Allah's full power and authority over a situation; reflecting on His complete and absolute dominion"],
+  [71,"الْمُقَدِّمُ","AL-MUQADDIM","The Expediter","guidance,dua","When asking Allah to bring forward a blessing at the right time; seeking to be prioritised in goodness"],
+  [72,"الْمُؤَخِّرُ","AL-MU'AKHKHIR","The Delayer","reflection,guidance","When impatient with a du'a that seems delayed; trusting Allah delays only in wisdom and perfect timing"],
+  [73,"الْأَوَّلُ","AL-AWWAL","The First","reflection","When beginning worship; reflecting that Allah precedes all existence; deepening understanding of His eternity"],
+  [74,"الْآخِرُ","AL-AAKHIR","The Last","reflection,grief","When facing endings - death, farewell, loss; knowing Allah endures beyond all; finding comfort in His permanence"],
+  [75,"الظَّاهِرُ","AZ-ZAAHIR","The Manifest","reflection,dua","When seeking signs of Allah in creation around you; asking for clarity to see His presence in all things"],
+  [76,"الْبَاطِنُ","AL-BAATIN","The Hidden","reflection","When reflecting on Allah's hidden knowledge; trusting in what cannot be perceived by the senses alone"],
+  [77,"الْوَالِي","AL-WAALI","The Sole Governor","reflection,justice","When earthly governance fails; reminding yourself that all true authority belongs to Allah alone"],
+  [78,"الْمُتَعَالِي","AL-MUTA'ALI","The Self-Exalted","reflection","During deep contemplation of Allah's transcendence; to feel the vast difference between creation and Creator"],
+  [79,"الْبَرُّ","AL-BARR","The Source of All Goodness","gratitude,dua","When receiving unexpected kindness or blessing; acknowledging that all goodness in your life flows from Allah"],
+  [80,"التَّوَّابُ","AT-TAWWAB","The Ever-Pardoning","forgiveness,dua","When returning to Allah after a long absence from worship; after sincere tawbah (repentance)"],
+  [81,"الْمُنْتَقِمُ","AL-MUNTAQIM","The Avenger","justice","When oppressed and unable to seek justice; leaving revenge entirely to Allah - not a name for personal vengeance"],
+  [82,"الْعَفُوُّ","AL-AFUWW","The Pardoner","forgiveness","When seeking erasure of sins, not just covering them; especially on Laylat ul-Qadr (Night of Power)"],
+  [83,"الرَّؤُوفُ","AR-RA'OOF","The Most Kind","grief,hardship","When you need tender compassion; when grieving, ill, or dealing with a sensitive situation; Allah's gentle care"],
+  [84,"مَالِكُ الْمُلْكِ","MAALIK-UL-MULK","Master of the Kingdom","reflection,dua","When reflecting on the transience of worldly power; when kings and authorities fail; affirming Allah's eternal dominion"],
+  [85,"ذُو الْجَلَالِ","DHUL-JALAAL WAL-IKRAAM","Lord of Majesty and Generosity","dua,reflection","At the close of du'a and prayer; invoking all of Allah's might and generosity together; recommended for frequent use"],
+  [86,"الْمُقْسِطُ","AL-MUQSIT","The Just One","justice,dua","When asking for fairness in a specific situation; calling on Allah to balance what is unjust in your life"],
+  [87,"الْجَامِعُ","AL-JAAMI","The Gatherer","grief,dua","When separated from loved ones; asking for unity in family or community; reflecting on the Day of Gathering"],
+  [88,"الْغَنِيُّ","AL-GHANIYY","The Self-Sufficient","provision,reflection","When feeling dependent on people; remembering only Allah is truly rich and free of need; before seeking provision"],
+  [89,"الْمُغْنِي","AL-MUGHNI","The Enricher","provision,dua","When asking to be freed from poverty or need; asking Allah for richness in spirit, health, or material sufficiency"],
+  [90,"الْمَانِعُ","AL-MANI","The Withholder","reflection,hardship","When something good is held back; trusting Allah withholds harm disguised as good; seeking understanding of His wisdom"],
+  [91,"الضَّارُّ","AD-DHARR","The Distresser","reflection","When trials befall you; understanding that even harm comes through Allah's permission and contains wisdom or a lesson"],
+  [92,"النَّافِعُ","AN-NAFI","The Benefactor","gratitude,dua","When seeking benefit and wellbeing; thanking Allah for what benefits you; asking for more good to come your way"],
+  [93,"النُّورُ","AN-NUR","The Light","guidance,hardship","When spiritually lost or in moral darkness; asking for illumination of heart, path, and intellect"],
+  [94,"الْهَادِي","AL-HAADI","The Guide","guidance,dua","When facing a crossroads in life; asking for clear guidance; in istikharah; when you simply do not know which way to go"],
+  [95,"الْبَدِيعُ","AL-BADEE","The Incomparable Originator","reflection,dua","When marvelling at creation's beauty; asking for a creative or unprecedented solution to a problem"],
+  [96,"الْبَاقِي","AL-BAAQI","The Everlasting","grief,reflection","When something beloved has ended; finding comfort that only Allah endures; loosening attachment to the temporary"],
+  [97,"الْوَارِثُ","AL-WAARITH","The Inheritor","reflection,grief","When facing death - of oneself or a loved one; recognising all returns to Allah; seeking peace about what you leave behind"],
+  [98,"الرَّشِيدُ","AR-RASHEED","The Infallible Guide","guidance","When seeking sound direction in a complex matter; asking Allah to guide with His flawless wisdom and judgement"],
+  [99,"الصَّبُورُ","AS-SABOOR","The Forbearing, The Patient","hardship,reflection","When tested beyond your endurance; asking Allah for patience; reflecting on how patiently Allah deals with His creation"]
+];
+
+const TAG_LABELS = {
+  dua:"Du'a", hardship:"Hardship", forgiveness:"Forgiveness",
+  gratitude:"Gratitude", guidance:"Guidance", protection:"Protection",
+  provision:"Provision", grief:"Grief", justice:"Justice", reflection:"Reflection"
+};
+
+function renderRows(data) {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = data.map(([num, arabic, trans, meaning, cats, when]) => {
+    const tags = cats.split(',').map(c =>
+      `<span class="tag tag-${c}">${TAG_LABELS[c]}</span>`
+    ).join('');
+    return `<tr>
+      <td>${num}</td>
+      <td>
+        <div class="arabic">${arabic}</div>
+        <div class="transliteration">${trans}</div>
+      </td>
+      <td class="meaning">${trans}</td>
+      <td class="meaning">${meaning}</td>
+      <td class="when-wrap">
+        <div class="tags">${tags}</div>
+        <div class="when-text">${when}</div>
+      </td>
+    </tr>`;
+  }).join('');
+  const n = data.length;
+  document.getElementById('count').textContent = `${n} name${n !== 1 ? 's' : ''}`;
+  document.getElementById('noResults').style.display = n === 0 ? 'block' : 'none';
+  document.getElementById('tbl').style.display = n === 0 ? 'none' : 'table';
+}
+
+function filter() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const cat = document.getElementById('catFilter').value;
+  const filtered = NAMES.filter(([num, arabic, trans, meaning, cats, when]) => {
+    const matchQ = !q || trans.toLowerCase().includes(q) || meaning.toLowerCase().includes(q) || when.toLowerCase().includes(q) || String(num).includes(q);
+    const matchCat = !cat || cats.split(',').includes(cat);
+    return matchQ && matchCat;
+  });
+  renderRows(filtered);
+}
+
+renderRows(NAMES);
+</script>
+</body>
+</html>
